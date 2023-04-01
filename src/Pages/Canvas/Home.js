@@ -18,6 +18,10 @@ export default function Home(props) {
     socket.emit("connected", (newPixels) => {
       setPixels(newPixels);
     })
+    return () => {
+      socket.off("updateCanvas");
+      socket.close();
+    }    
   }, []);
 
   socket.on("updateCanvas", (res) => {

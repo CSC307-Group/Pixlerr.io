@@ -18,6 +18,9 @@ function Account (props) {
     socket.emit("connected", (newPixels) => {
       setPixels(newPixels);
     })
+    return () => {
+      socket.close();
+    } 
   }, []);
 
   function postedByUser(pixel) {
