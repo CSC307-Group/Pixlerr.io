@@ -12,22 +12,23 @@ const userhost = process.env.REACT_APP_BACKEND_URL + "/users";
 function App() {
   // const [activeUser, setActiveUser] = useLocalStorage("activeUser", { _id: "", username: "", pixelTime: "", userType: "" });
   // const [isLoggedIn, setLoginStatus] = useLocalStorage("loginStatus", false);
-  const [activeUser, setActiveUser] = useState({ _id: "", username: "", pixelTime: "", userType: "" });
-  const [isLoggedIn, setLoginStatus] = useState(false);
+  // const [activeUser, setActiveUser] = useState({ _id: "", username: "", pixelTime: "", userType: "" });
+  // const [isLoggedIn, setLoginStatus] = useState(false);
 
-  async function updateUserTime() {
-    try {
-      const response = await axios.patch(userhost, {user: activeUser});
-      setActiveUser(response.data);
-    } 
-    catch (error) {
-      console.log(error);
-    }
-  }
+  // async function updateUserTime() {
+  //   try {
+  //     const response = await axios.patch(userhost, {user: activeUser});
+  //     setActiveUser(response.data);
+  //   } 
+  //   catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   return (
     <div className="App">
-      <Routes>
+      <span>hi</span>
+      {/* <Routes>
         <Route path="/" element={<Home 
           activeUser={activeUser} 
           isLoggedIn={isLoggedIn} 
@@ -53,7 +54,7 @@ function App() {
           setActiveUser={setActiveUser} 
           setLoginStatus={setLoginStatus} 
         />} />
-      </Routes>
+      </Routes> */}
     </div>
   );
 }
