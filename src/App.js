@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { Routes, Route } from "react-router-dom";
-import axios from "axios";
-import About from "./Pages/About";
-import Account from "./Pages/Account";
-import Home from "./Pages/Canvas/Home";
-import Login from "./Pages/Login";
-import Logout from "./Pages/Logout";
+// import { Routes, Route } from "react-router-dom";
+// import axios from "axios";
+// import About from "./Pages/About";
+// import Account from "./Pages/Account";
+// import Home from "./Pages/Canvas/Home";
+// import Login from "./Pages/Login";
+// import Logout from "./Pages/Logout";
 
-const userhost = process.env.REACT_APP_BACKEND_URL + "/users";
+// const userhost = process.env.REACT_APP_BACKEND_URL + "/users";
 
 function App() {
   // const [activeUser, setActiveUser] = useLocalStorage("activeUser", { _id: "", username: "", pixelTime: "", userType: "" });
@@ -61,36 +61,36 @@ function App() {
 
 // Taken from https://usehooks.com/useLocalStorage/
 // Used to store state data into local storage for refresh persistence 
-function useLocalStorage(key, initialValue) {
-  const [storedValue, setStoredValue] = useState(() => {
-    if (typeof window === "undefined") {
-      return initialValue;
-    }
+// function useLocalStorage(key, initialValue) {
+//   const [storedValue, setStoredValue] = useState(() => {
+//     if (typeof window === "undefined") {
+//       return initialValue;
+//     }
 
-    try {
-      const item = window.localStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue;
-    } 
-    catch (error) {
-      console.log(error);
-      return initialValue;
-    }
-  });
+//     try {
+//       const item = window.localStorage.getItem(key);
+//       return item ? JSON.parse(item) : initialValue;
+//     } 
+//     catch (error) {
+//       console.log(error);
+//       return initialValue;
+//     }
+//   });
 
-  const setValue = (value) => {
-    try {
-      const valueToStore = value instanceof Function ? value(storedValue) : value;
-      setStoredValue(valueToStore);
-      if (typeof window !== "undefined") {
-        window.localStorage.setItem(key, JSON.stringify(valueToStore));
-      }
-    } 
-    catch (error) {
-      console.log(error);
-    }
-  };
+//   const setValue = (value) => {
+//     try {
+//       const valueToStore = value instanceof Function ? value(storedValue) : value;
+//       setStoredValue(valueToStore);
+//       if (typeof window !== "undefined") {
+//         window.localStorage.setItem(key, JSON.stringify(valueToStore));
+//       }
+//     } 
+//     catch (error) {
+//       console.log(error);
+//     }
+//   };
 
-  return [storedValue, setValue];
-}
+//   return [storedValue, setValue];
+// }
 
 export default App;
