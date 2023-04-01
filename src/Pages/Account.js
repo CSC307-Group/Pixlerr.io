@@ -8,21 +8,21 @@ const socket = io(process.env.REACT_APP_BACKEND_URL, { forceNew: true, secure: t
 
 function Account (props) {
   const { activeUser, isLoggedIn } = props;
-  // const [pixelList, setPixels] = useState([]);
+  const [pixelList, setPixels] = useState([]);
 
-  // useEffect(() => {
-  //   socket.emit("connected", (newPixels) => {
-  //     setPixels(newPixels);
-  //   })
-  // }, []);
+  useEffect(() => {
+    socket.emit("connected", (newPixels) => {
+      setPixels(newPixels);
+    })
+  }, []);
 
-  // function postedByUser(pixel) {
-  //   return (pixel['userId'] === activeUser['_id']);
-  // }
+  function postedByUser(pixel) {
+    return (pixel['userId'] === activeUser['_id']);
+  }
   
-  // function returnWhitePixel(pixel) {
-  //   return "#fff";
-  // }
+  function returnWhitePixel(pixel) {
+    return "#fff";
+  }
 
   return (
     <div>
@@ -34,14 +34,14 @@ function Account (props) {
           <div className="accountInfo">Last pixel posted on {activeUser.pixelTime}</div>
         </div>
       </div>
-      {/* {(< DrawingPanel
+      {(< DrawingPanel
         selectedColor={"transparent"}
         pixelList={pixelList}
         updatePixel={() => {}}  
         setMouseColor={() => {}}
         pixelFilterFunction={postedByUser}
         blankColor={returnWhitePixel}
-      />)} */}
+      />)}
     </div>
   );
 }
