@@ -23,7 +23,7 @@ function Login(props) {
         password: registerPassword,
       },
       withCredentials: true,
-      url: process.env.REACT_APP_BACKEND_URL + "/register",
+      url: process.env.REACT_APP_BACKEND_URL + "register",
       headers: {
         'Access-Control-Allow-Origin' : '*',
         'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
@@ -48,7 +48,7 @@ function Login(props) {
         password: loginPassword,
       },
       withCredentials: true,
-      url: process.env.REACT_APP_BACKEND_URL + "/login",
+      url: process.env.REACT_APP_BACKEND_URL + "login",
       headers: {
         'Access-Control-Allow-Origin' : '*',
         'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',

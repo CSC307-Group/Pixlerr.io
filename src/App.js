@@ -7,7 +7,7 @@ import Home from "./Pages/Canvas/Home";
 import Login from "./Pages/Login";
 import Logout from "./Pages/Logout";
 
-const userhost = process.env.REACT_APP_BACKEND_URL + "/users";
+const userhost = process.env.REACT_APP_BACKEND_URL + "users";
 
 function App() {
   // const [activeUser, setActiveUser] = useLocalStorage("activeUser", { _id: "", username: "", pixelTime: "", userType: "" });
