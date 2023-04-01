@@ -4,7 +4,11 @@ import Sidebar from "../Sidebar";
 import { io } from "socket.io-client";
 import "./home.scss";
 
-const socket = io(process.env.REACT_APP_BACKEND_URL, { forceNew: true, secure: true });
+const socket = io(process.env.REACT_APP_BACKEND_URL, { 
+  forceNew: true, 
+  secure: true,
+  transports: ['websocket', 'polling', 'flashsocket']
+});
 
 export default function Home(props) {
   const { activeUser, isLoggedIn, updateUserTime } = props;

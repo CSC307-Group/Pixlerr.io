@@ -4,7 +4,11 @@ import DrawingPanel from "./Canvas/DrawingPanel";
 import "./account.scss";
 import { io } from "socket.io-client";
 
-const socket = io(process.env.REACT_APP_BACKEND_URL, { forceNew: true, secure: true });
+const socket = io(process.env.REACT_APP_BACKEND_URL, { 
+  forceNew: true, 
+  secure: true,
+  transports: ['websocket', 'polling', 'flashsocket']
+});
 
 function Account (props) {
   const { activeUser, isLoggedIn } = props;
