@@ -24,6 +24,10 @@ function Login(props) {
       },
       withCredentials: true,
       url: process.env.REACT_APP_BACKEND_URL + "/register",
+      headers: {
+        'Access-Control-Allow-Origin' : '*',
+        'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+      }
     }).then((res) => {
       console.log(res);
       if (res.data !== "Invalid") {
@@ -45,6 +49,10 @@ function Login(props) {
       },
       withCredentials: true,
       url: process.env.REACT_APP_BACKEND_URL + "/login",
+      headers: {
+        'Access-Control-Allow-Origin' : '*',
+        'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+      }
     }).then((res) => {
       if (res.data !== "Invalid") {
         setActiveUser(res.data);
