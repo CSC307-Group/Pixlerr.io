@@ -1,31 +1,37 @@
-import { React, /*useEffect, useState*/ } from "react";
+import { React, useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
-// import DrawingPanel from "./Canvas/DrawingPanel";
+import DrawingPanel from "./Canvas/DrawingPanel";
 import "./account.scss";
-// import { io } from "socket.io-client";
+import { io } from "socket.io-client";
 
-// const socket = io(process.env.REACT_APP_BACKEND_URL, { forceNew: true, secure: true });
+const socket = io(process.env.REACT_APP_BACKEND_URL, { forceNew: true, secure: true });
 
 function Account (props) {
   const { activeUser, isLoggedIn } = props;
-  // const [pixelList, setPixels] = useState([]);
+  const [pixelList, setPixels] = useState([]);
 
-  // useEffect(() => {
-  //   socket.emit("connected", (newPixels) => {
-  //     setPixels(newPixels);
-  //   })
-  //   return () => {
-  //     socket.close();
-  //   } 
-  // }, []);
+  useEffect(() => {
+    const cleanup = () => {
+      setPixels([]);
+      socket.close();
+    }; 
+    window.addEventListener('beforeunload', cleanup);
 
-  // function postedByUser(pixel) {
-  //   return (pixel['userId'] === activeUser['_id']);
-  // }
+    socket.emit("connected", (newPixels) => {
+      setPixels(newPixels);
+    })
+    return () => {
+      window.removeEventListener('beforeunload', cleanup);
+    }    
+  }, []);
+
+  function postedByUser(pixel) {
+    return (pixel['userId'] === activeUser['_id']);
+  }
   
-  // function returnWhitePixel(pixel) {
-  //   return "#fff";
-  // }
+  function returnWhitePixel(pixel) {
+    return "#fff";
+  }
 
   return (
     <div>
@@ -37,14 +43,14 @@ function Account (props) {
           <div className="accountInfo">Last pixel posted on {activeUser.pixelTime}</div>
         </div>
       </div>
-      {/* {(< DrawingPanel
+      {(< DrawingPanel
         selectedColor={"transparent"}
         pixelList={pixelList}
         updatePixel={() => {}}  
         setMouseColor={() => {}}
         pixelFilterFunction={postedByUser}
         blankColor={returnWhitePixel}
-      />)} */}
+      />)}
     </div>
   );
 }
