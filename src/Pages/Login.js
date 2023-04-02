@@ -37,7 +37,6 @@ function Login(props) {
   };
   
   const login = () => {
-    console.log(process.env.REACT_APP_BACKEND_URL + "register")
     Axios({
       method: "POST",
       data: {

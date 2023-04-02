@@ -7,7 +7,7 @@ import "./home.scss";
 const socket = io(process.env.REACT_APP_BACKEND_URL, { forceNew: true, secure: true });
 
 export default function Home(props) {
-  const { activeUser, isLoggedIn, updateUserTime } = props;
+  const { activeUser, setActiveUser, isLoggedIn } = props;
   const [pixels, setPixels] = useState([]);
 
   useEffect(() => {
@@ -34,8 +34,8 @@ export default function Home(props) {
 
   async function updatePixel(pixel, newColor) {
     if (!isLoggedIn) return;
-    socket.emit("pixelUpdate", pixel, newColor, activeUser, () => { 
-      updateUserTime(); 
+    socket.emit("pixelUpdate", pixel, newColor, activeUser, (newUserData) => { 
+      setActiveUser(newUserData); 
     })
   }
 
