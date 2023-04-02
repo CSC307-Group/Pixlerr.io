@@ -4,23 +4,25 @@ import Sidebar from "../Sidebar";
 import { io } from "socket.io-client";
 import "./home.scss";
 
-const socket = io(process.env.REACT_APP_BACKEND_URL, { 
-  forceNew: true, 
-  secure: true,
-  transports: ['websocket', 'polling', 'flashsocket']
-});
+const socket = io(process.env.REACT_APP_BACKEND_URL, { forceNew: true, secure: true });
 
 export default function Home(props) {
   const { activeUser, isLoggedIn, updateUserTime } = props;
   const [pixels, setPixels] = useState([]);
 
   useEffect(() => {
+    const cleanup = () => {
+      setPixels([]);
+      socket.off("updateCanvas");
+      socket.close();
+    }; 
+    window.addEventListener('beforeunload', cleanup);
+
     socket.emit("connected", (newPixels) => {
       setPixels(newPixels);
     })
     return () => {
-      socket.off("updateCanvas");
-      socket.close();
+      window.removeEventListener('beforeunload', cleanup);
     }    
   }, []);
 

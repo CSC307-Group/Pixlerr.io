@@ -23,11 +23,7 @@ function Login(props) {
         password: registerPassword,
       },
       withCredentials: true,
-      url: process.env.REACT_APP_BACKEND_URL + "register",
-      headers: {
-        'Access-Control-Allow-Origin' : '*',
-        'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-      }
+      url: process.env.REACT_APP_BACKEND_URL + "register"
     }).then((res) => {
       console.log(res);
       if (res.data !== "Invalid") {
@@ -41,6 +37,7 @@ function Login(props) {
   };
   
   const login = () => {
+    console.log(process.env.REACT_APP_BACKEND_URL + "register")
     Axios({
       method: "POST",
       data: {
@@ -48,11 +45,7 @@ function Login(props) {
         password: loginPassword,
       },
       withCredentials: true,
-      url: process.env.REACT_APP_BACKEND_URL + "login",
-      headers: {
-        'Access-Control-Allow-Origin' : '*',
-        'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-      }
+      url: process.env.REACT_APP_BACKEND_URL + "login"
     }).then((res) => {
       if (res.data !== "Invalid") {
         setActiveUser(res.data);

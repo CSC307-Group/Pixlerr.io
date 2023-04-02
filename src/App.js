@@ -17,12 +17,7 @@ function App() {
 
   async function updateUserTime() {
     try {
-      const response = await axios.patch(userhost, {user: activeUser}, {
-        headers: {
-          'Access-Control-Allow-Origin' : '*',
-          'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-          }
-      });
+      const response = await axios.patch(userhost, {user: activeUser});
       setActiveUser(response.data);
     } 
     catch (error) {
